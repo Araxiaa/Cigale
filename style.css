@@ -1,0 +1,309 @@
+/* --- AMBIANCE BOTANIQUE --- */
+:root {
+    --bg-main: #e8eedf;
+    --container-bg: #fefdf9;
+    --primary-green: #2d4216;
+    --leaf-soft: #557138;
+    --lavender-deep: #685285;
+    --lavender-bg: #f5f0fc;
+    --amber-soft: #fdf3df;
+    --rose-faon: #e3a8a8;
+    --text-dark: #22291a;
+    --text-muted: #525c48;
+    --border-vintage: #becea9;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 30px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Halos décoratifs */
+.background-flora { position: fixed; border-radius: 50%; filter: blur(120px); z-index: 1; opacity: 0.25; pointer-events: none; }
+.bg-lavender-left { width: 400px; height: 400px; background: #cbd4fc; top: -50px; left: -100px; }
+.bg-fern-right { width: 500px; height: 500px; background: #b1dfa6; bottom: -50px; right: -100px; }
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    background: var(--container-bg);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(35, 46, 25, 0.1);
+    border: 2px solid var(--primary-green);
+    position: relative;
+    z-index: 10;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+/* Header */
+.oc-header { text-align: center; margin-bottom: 20px; }
+.cicada-icon { font-size: 2.5rem; color: var(--lavender-deep); }
+.clan-title { font-family: 'Playfair Display', serif; font-style: italic; color: var(--leaf-soft); letter-spacing: 2px; font-size: 1rem; text-transform: uppercase; }
+.oc-header h1 { font-family: 'Playfair Display', serif; color: var(--primary-green); font-size: 3rem; margin: 5px 0; }
+.flower-divider { color: var(--rose-faon); letter-spacing: 4px; margin-bottom: 5px; }
+.subtitle { margin: 0 0 15px 0; color: var(--text-muted); font-weight: 600; }
+.stats-container { display: flex; justify-content: center; gap: 10px; }
+.stat-bubble { background: #f2f6ee; border: 1px solid var(--border-vintage); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; color: var(--primary-green); }
+.stat-bubble.clan-rank { background: var(--lavender-bg); border-color: #d7caec; color: var(--lavender-deep); }
+
+/* Cacher les inputs radio */
+input[type="radio"] { display: none !important; }
+
+/* --- BARRE DE NAVIGATION EN HAUT --- */
+.tabs-nav-top {
+    display: flex;
+    justify-content: space-between;
+    background: #f4f7ef;
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--border-vintage);
+    margin-bottom: 20px;
+}
+.tabs-nav-top label {
+    flex: 1;
+    text-align: center;
+    padding: 10px 4px;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+.tabs-nav-top label:hover { background: #eaf0e2; color: var(--primary-green); }
+
+/* --- ARCHITECTURE EN DOUBLE COLONNE --- */
+.tab-layout {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 20px;
+    min-height: 400px;
+}
+
+.content-display-zone {
+    background: #fff;
+    border: 1px solid var(--border-vintage);
+    border-radius: 18px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.side-nav-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sub-nav-group {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: #fdfdfb;
+    border: 1px dashed var(--border-vintage);
+    padding: 10px;
+    border-radius: 14px;
+}
+.side-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--primary-green);
+    border-bottom: 1px solid var(--border-vintage);
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    text-align: center;
+}
+.side-nav-right label {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #fff;
+    border: 1px solid #eef2e8;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: 0.2s;
+}
+.side-nav-right label:hover {
+    background: var(--lavender-bg);
+    color: var(--lavender-deep);
+    border-color: #dcd2ee;
+}
+
+/* --- LOGIQUE D'AFFICHAGE D'ONGLETS --- */
+.main-pane { display: none; }
+
+#main-tab-identite:checked ~ .tabs-nav-top .lbl-main-identite { background: var(--primary-green); color: white; }
+#main-tab-identite:checked ~ .tab-layout #pane-main-identite { display: block; }
+#main-tab-identite:checked ~ .tab-layout .side-nav-right #group-nav-empty { display: flex; }
+
+#main-tab-caractere:checked ~ .tabs-nav-top .lbl-main-caractere { background: var(--primary-green); color: white; }
+#main-tab-caractere:checked ~ .tab-layout #pane-main-caractere { display: block; }
+#main-tab-caractere:checked ~ .tab-layout .side-nav-right #group-nav-caractere { display: flex; }
+
+#main-tab-apparence:checked ~ .tabs-nav-top .lbl-main-apparence { background: var(--primary-green); color: white; }
+#main-tab-apparence:checked ~ .tab-layout #pane-main-apparence { display: block; }
+#main-tab-apparence:checked ~ .tab-layout .side-nav-right #group-nav-apparence { display: flex; }
+
+#main-tab-lignee:checked ~ .tabs-nav-top .lbl-main-lignee { background: var(--primary-green); color: white; }
+#main-tab-lignee:checked ~ .tab-layout #pane-main-lignee { display: block; }
+#main-tab-lignee:checked ~ .tab-layout .side-nav-right #group-nav-lignee { display: flex; }
+
+#main-tab-relations:checked ~ .tabs-nav-top .lbl-main-relations { background: var(--primary-green); color: white; }
+#main-tab-relations:checked ~ .tab-layout #pane-main-relations { display: block; }
+#main-tab-relations:checked ~ .tab-layout .side-nav-right #group-nav-empty { display: flex; }
+
+#main-tab-histoire:checked ~ .tabs-nav-top .lbl-main-histoire { background: var(--primary-green); color: white; }
+#main-tab-histoire:checked ~ .tab-layout #pane-main-histoire { display: block; }
+#main-tab-histoire:checked ~ .tab-layout .side-nav-right #group-nav-histoire { display: flex; }
+
+#main-tab-galerie:checked ~ .tabs-nav-top .lbl-main-galerie { background: var(--primary-green); color: white; }
+#main-tab-galerie:checked ~ .tab-layout #pane-main-galerie { display: block; }
+#main-tab-galerie:checked ~ .tab-layout .side-nav-right #group-nav-empty { display: flex; }
+
+/* --- ACTIVATION DES SOUS-ONGLETS --- */
+.sub-pane { display: none; animation: paneFade 0.25s ease-out forwards; }
+@keyframes paneFade { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
+
+#sub-char-global:checked ~ .tab-layout .side-nav-right .lbl-sub-char-global,
+#sub-char-qualites:checked ~ .tab-layout .side-nav-right .lbl-sub-char-qualites,
+#sub-char-defauts:checked ~ .tab-layout .side-nav-right .lbl-sub-char-defauts,
+#sub-char-perso:checked ~ .tab-layout .side-nav-right .lbl-sub-char-perso,
+#sub-phys-global:checked ~ .tab-layout .side-nav-right .lbl-sub-phys-global,
+#sub-phys-forts:checked ~ .tab-layout .side-nav-right .lbl-sub-phys-forts,
+#sub-phys-faibles:checked ~ .tab-layout .side-nav-right .lbl-sub-phys-faibles,
+#sub-marques:checked ~ .tab-layout .side-nav-right .lbl-sub-marques,
+#sub-fam-cercle:checked ~ .tab-layout .side-nav-right .lbl-sub-fam-cercle,
+#sub-fam-arbre:checked ~ .tab-layout .side-nav-right .lbl-sub-fam-arbre,
+#sub-hist-sommaire:checked ~ .tab-layout .side-nav-right .lbl-sub-hist-sommaire,
+#sub-hist-ch1:checked ~ .tab-layout .side-nav-right .lbl-sub-hist-ch1,
+#sub-hist-ch2:checked ~ .tab-layout .side-nav-right .lbl-sub-hist-ch2,
+#sub-hist-ch3:checked ~ .tab-layout .side-nav-right .lbl-sub-hist-ch3 {
+    background: var(--leaf-soft);
+    color: white;
+    border-color: var(--primary-green);
+}
+
+#sub-char-global:checked ~ .tab-layout #pane-char-global { display: block; }
+#sub-char-qualites:checked ~ .tab-layout #pane-char-qualites { display: block; }
+#sub-char-defauts:checked ~ .tab-layout #pane-char-defauts { display: block; }
+#sub-char-perso:checked ~ .tab-layout #pane-char-perso { display: block; }
+#sub-phys-global:checked ~ .tab-layout #pane-phys-global { display: block; }
+#sub-phys-forts:checked ~ .tab-layout #pane-phys-forts { display: block; }
+#sub-phys-faibles:checked ~ .tab-layout #pane-phys-faibles { display: block; }
+#sub-marques:checked ~ .tab-layout #pane-marques { display: block; }
+#sub-fam-cercle:checked ~ .tab-layout #pane-fam-cercle { display: block; }
+#sub-fam-arbre:checked ~ .tab-layout #pane-fam-arbre { display: block; }
+#sub-hist-sommaire:checked ~ .tab-layout #pane-hist-sommaire { display: block; }
+#sub-hist-ch1:checked ~ .tab-layout #pane-hist-ch1 { display: block; }
+#sub-hist-ch2:checked ~ .tab-layout #pane-hist-ch2 { display: block; }
+#sub-hist-ch3:checked ~ .tab-layout #pane-hist-ch3 { display: block; }
+
+/* --- LISTE DE FAMILLE --- */
+.family-list-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.family-card { background: #fff; border: 1px solid var(--border-vintage); padding: 14px; border-radius: 12px; font-size: 0.9rem; }
+.family-card h3 { margin: 0 0 4px 0; font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-green); }
+.family-card .meta { font-size: 0.8rem; font-weight: normal; color: var(--text-muted); }
+.appearance-line { font-size: 0.82rem; color: var(--leaf-soft); margin: 2px 0 6px 0; }
+.family-card p { margin: 0; line-height: 1.45; }
+
+.family-card.sick { border-left: 5px solid var(--rose-faon); background: #fffbfb; }
+.family-card.precious { border-left: 5px solid var(--lavender-deep); background: var(--lavender-bg); }
+.family-card.tense { border-left: 5px solid #d4a373; background: #fffdf9; }
+.family-card.standard { border-left: 5px solid var(--border-vintage); }
+.family-card.legacy { border-left: 5px solid var(--primary-green); }
+.family-card.precious-pj { border-left: 5px solid #cc9955; background: #fffdf2; }
+
+/* --- DESIGN DE L'ARBRE GÉNÉALOGIQUE V2 --- */
+.tree-graph-v2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fdfdf9;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border-vintage);
+}
+.tree-section { position: relative; padding: 18px 10px 12px 10px; border-radius: 12px; background: rgba(255, 255, 255, 0.6); }
+.core-family-box { background: #fdfaf3; border: 1px solid #f3ebd8; box-shadow: 0 4px 12px rgba(45, 66, 22, 0.02); }
+.generation-label { position: absolute; top: -10px; left: 15px; background: var(--container-bg); padding: 2px 8px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-vintage); border-radius: 4px; letter-spacing: 0.5px; }
+.tree-row { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.node {
+    background: white;
+    border: 1px solid var(--border-vintage);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    text-align: center;
+    min-width: 115px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+}
+.node-relation { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+
+.node.current { border: 2px solid var(--primary-green); background: #f4f8f0; transform: scale(1.04); font-weight: bold; }
+.node.parent-node { border-bottom: 3px solid var(--leaf-soft); }
+.node.parent-node.sick { border-bottom: 3px solid var(--rose-faon); }
+.node.precious { border-bottom: 3px solid var(--lavender-deep); background: var(--lavender-bg); }
+.node.tense-node { border-bottom: 3px solid #d4a373; }
+.node.dead { background: #f7f7f5; border-color: #ccd5c3; color: #7a8273; border-style: dashed; }
+.node.pj { border: 1px solid #cc9955; background: #fffdf2; font-weight: 600; }
+
+.node-link-love { font-size: 0.9rem; margin: 0 4px; }
+.node-link-dash { color: var(--border-vintage); font-size: 0.8rem; }
+.node-link-down { color: var(--border-vintage); text-align: center; margin: 5px 0; font-size: 1rem; }
+.tree-spacer-line { width: 25px; height: 1px; background: var(--border-vintage); }
+.tree-divider { text-align: center; font-size: 0.78rem; color: var(--text-muted); font-weight: 600; margin: 4px 0; font-style: italic; }
+
+/* --- TEXTES ET BLOCS --- */
+.pane-title { font-family: 'Playfair Display', serif; color: var(--primary-green); font-size: 1.6rem; text-align: center; margin-top: 0; margin-bottom: 10px; }
+.intro-quote { font-family: 'Playfair Display', serif; font-style: italic; text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
+.section-subtitle { font-family: 'Playfair Display', serif; color: var(--leaf-soft); font-size: 1.15rem; border-bottom: 1px dashed var(--border-vintage); padding-bottom: 4px; margin-top: 15px; margin-bottom: 10px; }
+.global-psycho { line-height: 1.5; font-size: 0.92rem; text-align: justify; }
+.dual-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.col-box { padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border-vintage); font-size: 0.9rem; }
+.col-box.light-green { background: #f3f9ee; }
+.col-box.light-amber { background: #fffdf6; }
+.col-box.lavender-tint { background: var(--lavender-bg); }
+.col-box.plain { background: #fafafa; }
+ul { padding-left: 15px; margin: 0; }
+li { margin-bottom: 4px; }
+
+/* Nomenclature */
+.nomenclature-tree { display: flex; flex-direction: column; gap: 10px; }
+.tree-item { background: #fff; border: 1px solid var(--border-vintage); padding: 10px 15px; border-radius: 10px; }
+.tree-item.active { background: var(--amber-soft); border: 2px solid var(--leaf-soft); }
+.tree-item h3 { margin: 2px 0; font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-green); }
+.tree-item .age { font-size: 0.7rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; }
+.tree-item .desc { margin: 2px 0 0 0; font-size: 0.85rem; }
+
+/* Alliances & Galerie */
+.opinion-card { background: #fdfdfa; border: 1px solid var(--border-vintage); padding: 15px; border-radius: 12px; margin-bottom: 12px; border-top: 3px solid var(--leaf-soft); font-size: 0.9rem; }
+.opinion-card h3 { margin-top: 0; font-family: 'Playfair Display', serif; color: var(--primary-green); }
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.gallery-card-item { background: #fff; border: 1px solid var(--border-vintage); padding: 10px; border-radius: 12px; text-align: center; }
+.art-placeholder { height: 160px; background: #eef2ea; border-radius: 8px; display: flex; justify-content: center; align-items: center; border: 1px dashed var(--leaf-soft); font-size: 0.8rem; color: var(--text-muted); }
+.gallery-card-item h4 { margin: 8px 0 0 0; font-size: 0.85rem; }
+
+/* Footer */
+.oc-footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 25px; border-top: 1px solid var(--border-vintage); padding-top: 12px; }
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+    .tab-layout { grid-template-columns: 1fr; }
+    .tabs-nav-top { flex-wrap: wrap; }
+    .tabs-nav-top label { min-width: 30%; font-size: 0.8rem; }
+    .side-nav-right { order: -1; }
+    .dual-columns, .gallery-grid { grid-template-columns: 1fr; }
+}
