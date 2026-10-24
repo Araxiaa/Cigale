@@ -3,46 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Chant de Cigale — Guérisseuse du Clan du Vent. Fiche OC, La Guerre des Clans.">
-  <meta name="theme-color" content="#e8eedf">
+  <meta name="description" content="Chant de Cigale — guérisseuse du Clan du Vent. Fiche OC, La Guerre des Clans.">
+  <meta name="theme-color" content="#fbe9d6">
   <title>Chant de Cigale — Fiche OC</title>
   <link rel="icon" href="/Cigale/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://eqyriepznjcjgmmwaheg.supabase.co" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/Cigale/assets/index-BIeiYka7.js"></script>
-  <link rel="stylesheet" crossorigin href="/Cigale/assets/index-BhaZpL0e.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/Cigale/assets/index-Cki0zUkG.js"></script>
+  <link rel="stylesheet" crossorigin href="/Cigale/assets/index-DGfw3-3p.css">
 </head>
 <body>
-  <div class="halo halo-l" aria-hidden="true"></div>
-  <div class="halo halo-r" aria-hidden="true"></div>
   <canvas id="fireflies" aria-hidden="true"></canvas>
   <div class="petals" id="petals" aria-hidden="true"></div>
   <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <main class="container">
-    <header class="oc-header">
-      <a class="dash-cta" href="#dashboard/live" id="dash-cta">📊 Mon dashboard</a>
-      <div class="hero-portrait" id="portrait"><div class="ring" aria-hidden="true"></div><img src="/Cigale/cigale.webp" alt="Chant de Cigale, dessin par @.araxia." width="400" height="240" fetchpriority="high"></div>
-      <div class="clan-title">Guérisseuse du Clan du Vent</div>
-      <h1>Chant de Cigale</h1>
-      <div class="flower-divider" aria-hidden="true">𑁍 ┈┈┈┈ 𓆣 ┈┈┈┈ 𑁍</div>
-      <p class="subtitle" id="subtitle">Femelle Lesbienne</p>
-      <div class="stats-container" id="header-stats"></div>
-    </header>
-
-    <nav class="tabs-nav-top" id="tabs" role="tablist" aria-label="Sections"></nav>
-
-    <div class="tab-layout">
-      <section class="content-display-zone" id="content" aria-live="polite"></section>
-      <aside class="side-nav-right" id="side" aria-label="Sous-sections"></aside>
+  <header class="hero">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="kicker">Guérisseuse du Clan du Vent</p>
+        <h1>Chant de Cigale</h1>
+        <p class="ornament" aria-hidden="true"><span></span>𓆣<span></span></p>
+        <p class="subtitle" id="subtitle">Femelle · Lesbienne</p>
+        <p class="quote" id="quote"></p>
+        <div class="stats-container" id="header-stats"></div>
+        <a class="dash-cta" href="#dashboard/live" id="dash-cta">🔑 Espace joueur</a>
+      </div>
+      <div class="hero-portrait" id="portrait">
+        <svg class="wing wing-l" viewBox="0 0 200 120" aria-hidden="true"><use href="#wing"/></svg>
+        <svg class="wing wing-r" viewBox="0 0 200 120" aria-hidden="true"><use href="#wing"/></svg>
+        <div class="arch"><img src="/Cigale/cigale.webp" alt="Chant de Cigale, dessin par @.araxia." width="400" height="240" fetchpriority="high"></div>
+        <span class="credit">Dessin · @.araxia.</span>
+      </div>
     </div>
+    <svg class="grass" id="grass" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"></svg>
+  </header>
 
-    <footer class="oc-footer">
-      Fiche réalisée par <strong>@.araxia.</strong> pour <strong>@lavnd.13</strong> — Univers La Guerre des Clans
-    </footer>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cdeee6" stop-opacity=".85"/><stop offset=".5" stop-color="#e3d4f4" stop-opacity=".8"/><stop offset="1" stop-color="#fbdcc8" stop-opacity=".75"/></linearGradient>
+      <g id="wing"><path d="M198 60 C170 2 70 -6 4 36 C40 62 120 92 198 60Z" fill="url(#wg)" stroke="#b79ac9" stroke-opacity=".55" stroke-width="1.2"/>
+        <path d="M198 60 C140 38 80 30 6 36 M198 60 C150 52 90 50 40 52 M170 24 C140 34 110 36 80 30 M150 14 C120 24 100 30 60 24" fill="none" stroke="#b79ac9" stroke-opacity=".5" stroke-width=".8"/></g>
+    </defs>
+  </svg>
+
+  <nav class="tabs-nav-top" id="tabs" role="tablist" aria-label="Sections"></nav>
+
+  <main class="page">
+    <nav class="subnav" id="side" aria-label="Sous-sections"></nav>
+    <section class="content-display-zone" id="content" aria-live="polite"></section>
   </main>
+
+  <footer class="oc-footer">
+    <p>Fiche de <strong>Chant de Cigale</strong> · joueuse <strong>Lavnd.13</strong> · réalisée par <strong>@.araxia.</strong> · base : Cat Lover 6 (Pinterest)</p>
+    <p class="muted">Univers La Guerre des Clans · <a href="#dashboard/live" id="foot-login">Espace joueur</a></p>
+  </footer>
 
 </body>
 </html>
